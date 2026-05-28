@@ -15,8 +15,16 @@ vars = {
   'flutter_git': 'https://flutter.googlesource.com',
   'skia_git': 'https://skia.googlesource.com',
   'llvm_git': 'https://llvm.googlesource.com',
-  "dart_sdk_revision": "8681ae7453dd8320adbcebb092e1b24b0ea63eee",
-  "dart_sdk_git": "git@github.com:shorebirdtech/dart-sdk.git",
+  # Patchwing W5': switch dart-sdk from Shorebird private fork to upstream public.
+  # Original (Shorebird private, requires SSH access to private repo):
+  #   "dart_sdk_revision": "8681ae7453dd8320adbcebb092e1b24b0ea63eee",
+  #   "dart_sdk_git": "git@github.com:shorebirdtech/dart-sdk.git",
+  # Replacement: upstream dart-lang/sdk @ matching dart_revision (line below).
+  # Trade-off: loses Shorebird-private patches in dart-sdk; we provide stubs
+  # for Shorebird_SetBaseSnapshots / Shorebird_ReadLinkHeader at link time
+  # (bsdiff full-replacement path does not need .vmcode parsing).
+  "dart_sdk_revision": "98116461144f4429ab873f8497023a5ec3b08127",
+  "dart_sdk_git": "https://dart.googlesource.com/sdk.git",
   "updater_git": "https://github.com/shorebirdtech/updater.git",
   "updater_rev": "fe3733374c222bf7d8ff1913f5ab213421a7d94f",
   'skia_revision': 'e9ed4fc9f1544c58d8a9347c1fc9471d8dd7c465',
