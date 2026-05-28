@@ -9,6 +9,7 @@
 #include "flutter/fml/logging.h"
 #include "flutter/fml/mapping.h"
 #include "flutter/runtime/shorebird/patch_mapping.h"
+#include "flutter/runtime/shorebird/shorebird_dart_stubs.h"
 #include "third_party/dart/runtime/include/dart_api.h"
 
 namespace flutter {

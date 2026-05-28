@@ -6,6 +6,11 @@ source_set("patch_cache") {
     "patch_cache.h",
     "patch_mapping.cc",
     "patch_mapping.h",
+    # Patchwing W5' (v3.0): satisfy link-time references to two C
+    # symbols that were exported by the Shorebird private dart-sdk
+    # fork but are absent in upstream dart-sdk. See header for details.
+    "shorebird_dart_stubs.cc",
+    "shorebird_dart_stubs.h",
   ]
 
   deps = [

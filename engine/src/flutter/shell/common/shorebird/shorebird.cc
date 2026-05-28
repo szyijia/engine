@@ -17,6 +17,7 @@
 #include "flutter/lib/ui/plugins/callback_cache.h"
 #include "flutter/runtime/dart_snapshot.h"
 #include "flutter/runtime/dart_vm.h"
+#include "flutter/runtime/shorebird/shorebird_dart_stubs.h"
 #include "flutter/shell/common/shell.h"
 #include "flutter/shell/common/shorebird/snapshots_data_handle.h"
 #include "flutter/shell/common/shorebird/updater.h"
