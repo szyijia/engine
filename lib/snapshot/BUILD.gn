@@ -38,13 +38,15 @@ group("generate_snapshot_bins") {
   } else if (host_os == "mac" &&
              (target_cpu == "arm" || target_cpu == "arm64")) {
     deps += [
-      ":create_arm_analyze_snapshot",
+      # patchwing: removed ":create_arm_analyze_snapshot" — causes GN
+      # errors on mac with upstream dart-sdk.
       ":create_arm_gen_snapshot",
     ]
   }
 
-  # Build analyze_snapshot for 64-bit target CPUs.
-  if (target_cpu == "arm64") {
+  # Build analyze_snapshot for 64-bit target CPUs (linux only).
+  # patchwing: added host_os == "linux" condition — upstream behavior.
+  if (host_os == "linux" && target_cpu == "arm64") {
     deps += [ "$dart_src/runtime/bin:analyze_snapshot($host_toolchain)" ]
   }
 }
