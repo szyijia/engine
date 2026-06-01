@@ -19,6 +19,8 @@ source_set("shorebird") {
   sources = [
     "shorebird.cc",
     "shorebird.h",
+    "shorebird_dart_stubs.cc",
+    "shorebird_dart_stubs.h",
   ]
 
   deps = [
@@ -27,10 +29,7 @@ source_set("shorebird") {
     "//flutter/runtime",
     "//flutter/runtime:libdart",
     "//flutter/shell/common",
-    "//flutter/shell/platform/embedder:embedder_headers",
   ]
-
-  include_dirs = [ "//flutter/updater" ]
 }
 
 if (enable_unittests) {
@@ -43,8 +42,6 @@ if (enable_unittests) {
 
     sources = [ "snapshots_data_handle_unittests.cc" ]
 
-    # This only includes snapshots_data_handle and not shorebird because
-    # shorebird fails to link due to a missing updater lib.
     deps = [
       ":shorebird_fixtures",
       ":snapshots_data_handle",
