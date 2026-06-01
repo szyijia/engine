@@ -45,7 +45,6 @@ generated_file("artifacts_entitlement_config") {
 if (build_engine_artifacts) {
   zip_bundle("artifacts") {
     deps = [
-      "$dart_src/runtime/bin:analyze_snapshot",
       "$dart_src/runtime/bin:gen_snapshot",
       "//flutter/flutter_frontend_server:frontend_server",
       "//flutter/impeller/compiler:impellerc",
@@ -54,6 +53,12 @@ if (build_engine_artifacts) {
       "//flutter/shell/testing:testing",
       "//flutter/tools/path_ops:path_ops",
     ]
+
+    # patchwing: analyze_snapshot is only built on linux by upstream dart-sdk.
+    if (host_os == "linux") {
+      deps += [ "$dart_src/runtime/bin:analyze_snapshot" ]
+    }
+
     if (is_mac) {
       # TODO(godofredoc): Remove after paths are standardized flutter/flutter#105351.
       # Mac artifacts sometimes use mac and sometimes darwin. Standardizing the
@@ -140,10 +145,7 @@ if (build_engine_artifacts) {
     if (host_os == "mac") {
       deps += [ ":artifacts_entitlement_config" ]
       files += [
-        {
-          source = "$root_out_dir/analyze_snapshot$exe"
-          destination = "analyze_snapshot$exe"
-        },
+        # patchwing: analyze_snapshot mac — not produced by upstream dart-sdk.
         {
           source = "$target_gen_dir/entitlements.txt"
           destination = "entitlements.txt"
