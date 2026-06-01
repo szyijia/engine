@@ -19,6 +19,8 @@ source_set("shorebird") {
   sources = [
     "shorebird.cc",
     "shorebird.h",
+    "shorebird_dart_stubs.cc",
+    "shorebird_dart_stubs.h",
   ]
 
   deps = [
@@ -29,7 +31,6 @@ source_set("shorebird") {
     "//flutter/shell/common",
   ]
 
-  include_dirs = [ "//flutter/updater" ]
 }
 
 if (enable_unittests) {
